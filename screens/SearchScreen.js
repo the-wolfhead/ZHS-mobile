@@ -15,7 +15,7 @@ const SearchScreen = () => {
     setError(null);
 
     // Make HTTP GET request to backend API with search query
-    axios.get(`http://backend-api-url/labs?name=${searchQuery}`)
+    axios.get(`https://zhs-backend.onrender.com/labs?name=${searchQuery}`)
       .then(response => {
         setSearchResults(response.data);
         setLoading(false);

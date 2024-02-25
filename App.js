@@ -2,8 +2,8 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import BottomNavBar from './assets/BottomNavBar';
-import DoctorBookingPage from './assets/DoctorBookingPage';
+import BottomNavBar from './screens/BottomNavBar';
+import DoctorBookingPage from './screens/DoctorBookingPage';
 
 const HomeScreen = () => (
   <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>

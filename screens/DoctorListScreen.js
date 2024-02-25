@@ -11,7 +11,7 @@ const DoctorListScreen = () => {
 
   useEffect(() => {
     // Fetch doctors data from backend API
-    axios.get('http://your-backend-api-url/doctors')
+    axios.get('https://zhs-backend.onrender.com/doctors')
       .then(response => {
         setDoctors(response.data);
         setLoading(false);

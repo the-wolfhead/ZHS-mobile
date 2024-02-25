@@ -10,9 +10,44 @@ const PatientSignupScreen = () => {
   const [password, setPassword] = useState('');
 
   const handleSignup = () => {
-    // Implement signup logic here (e.g., send data to backend API)
-    console.log('Signup button pressed');
+     // Validate input data
+     if (!name || !dateOfBirth || !gender || !contactInfo || !address || !password) {
+      console.error('Please fill in all fields');
+      return;
+    }
+
+    // Prepare signup data
+    const signupData = {
+      name,
+      dateOfBirth,
+      gender,
+      contactInfo,
+      address,
+      password,
+    };
+
+    try {
+      // Send signup data to backend API (replace 'your_backend_api_endpoint' with your actual endpoint)
+      const response = await fetch('your_backend_api_endpoint/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(signupData),
+      });
+
+      // Handle response
+      if (response.ok) {
+        console.log('Signup successful');
+        // Redirect to login screen or perform any other necessary action
+      } else {
+        console.error('Signup failed:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error during signup:', error.message);
+    }
   };
+  
 
   return (
     <View style={styles.container}>

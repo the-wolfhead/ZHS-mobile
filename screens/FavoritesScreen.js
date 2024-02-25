@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
-import { getFavoriteDoctors, getFavoriteLaboratories } from './backend'; // Import backend functions
+import { getFavoriteDoctors, getFavoriteLaboratories } from 'https://zhs-backend.onrender.com'; // Import backend functions
 
 const FavoritesScreen = () => {
   const [favoriteDoctors, setFavoriteDoctors] = useState([]);
