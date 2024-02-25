@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, Button, StyleSheet } from 'react-native';
-import { getDoctors } from 'https://zhs-backend.onrender.com/getDoctors'; // Import backend function to fetch doctors
 
 const DoctorBookingPage = () => {
   const [doctors, setDoctors] = useState([]);
@@ -8,12 +7,26 @@ const DoctorBookingPage = () => {
   // Fetch doctors data on component mount
   useEffect(() => {
     const fetchDoctors = async () => {
-      const doctorsData = await getDoctors();
-      setDoctors(doctorsData);
+      try {
+        const response = await fetch('https://zhs-backend.onrender.com/getDoctors');
+        if (!response.ok) {
+          throw new Error('Failed to fetch doctors data');
+        }
+        const doctorsData = await response.json();
+        setDoctors(doctorsData);
+      } catch (error) {
+        console.error('Error fetching doctors:', error);
+      }
     };
 
     fetchDoctors();
   }, []);
+
+  // Function to handle booking appointment with a doctor
+  const bookAppointment = (doctorId) => {
+    // Implement booking appointment logic here
+    console.log('Booking appointment with doctor ID:', doctorId);
+  };
 
   return (
     <View style={styles.container}>
