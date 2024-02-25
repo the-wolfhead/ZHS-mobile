@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, Button, StyleSheet } from 'react-native';
-import { getDoctors } from 'https://zhs-backend.onrender.com'; // Import backend function to fetch doctors
+import { getDoctors } from 'https://zhs-backend.onrender.com/getDoctors'; // Import backend function to fetch doctors
 
 const DoctorBookingPage = () => {
   const [doctors, setDoctors] = useState([]);
