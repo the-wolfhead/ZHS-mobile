@@ -2,12 +2,13 @@ import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
+import HomeScreen from './HomeScreen';
 
-const HomeScreen = () => (
+/*const HomeScreen = () => (
   <View style={styles.container}>
     <Text>Home Screen</Text>
   </View>
-);
+);*/
 
 const AppointmentsScreen = () => (
   <View style={styles.container}>
@@ -37,20 +38,18 @@ const BottomNavBar = () => {
   const Tab = createBottomTabNavigator();
 
   return (
-    <NavigationContainer>
-      <Tab.Navigator
-        tabBarOptions={{
-          activeTintColor: 'rgba(64, 156, 255, 1)',
-          inactiveTintColor: 'gray',
-        }}
-      >
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Appointments" component={AppointmentsScreen} />
-        <Tab.Screen name="FindDoctor" component={FindDoctorScreen} options={{ tabBarButton: () => <FindDoctorButton /> }} />
-        <Tab.Screen name="Wallet" component={WalletScreen} />
-        <Tab.Screen name="More" component={MoreScreen} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <Tab.Navigator
+      tabBarOptions={{
+        activeTintColor: 'rgba(64, 156, 255, 1)',
+        inactiveTintColor: 'gray',
+      }}
+    >
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Appointments" component={AppointmentsScreen} />
+      <Tab.Screen name="FindDoctor" component={FindDoctorScreen} options={{ tabBarButton: () => <FindDoctorButton /> }} />
+      <Tab.Screen name="Wallet" component={WalletScreen} />
+      <Tab.Screen name="More" component={MoreScreen} />
+    </Tab.Navigator>
   );
 };
 
