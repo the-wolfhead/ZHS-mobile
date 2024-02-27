@@ -11,28 +11,28 @@ const specialties = [
 ];
 
 const doctors = [
-  { id: '1', name: 'Doctor 1' },
-  { id: '2', name: 'Doctor 2' },
-  { id: '3', name: 'Doctor 3' },
+  { id: '1', name: 'Doctor 1', specialization: 'Specialty 1', availability: 'Mon - Fri', rating: 4.5 },
+  { id: '2', name: 'Doctor 2', specialization: 'Specialty 2', availability: 'Tue - Sat', rating: 4.8 },
+  { id: '3', name: 'Doctor 3', specialization: 'Specialty 3', availability: 'Mon - Sun', rating: 4.2 },
   // Add more doctor data as needed
 ];
+
+const SpecialtyScreen = ({ title }) => (
+  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <Text>{title}</Text>
+  </View>
+);
+
 
 const HomeScreen = () => {
   const [index, setIndex] = useState(0);
 
   // Function to render specialty screens
-  const renderScene = SceneMap({
-    0: () => <SpecialtyScreen />,
-    1: () => <SpecialtyScreen />,
-    2: () => <SpecialtyScreen />,
-    // Add more specialty screens as needed
-  });
-
-  // Component for rendering specialty screen
-  const SpecialtyScreen = () => (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>{specialties[index].title}</Text>
-    </View>
+  const renderScene = SceneMap(
+    specialties.reduce((acc, specialty, i) => {
+      acc[i] = () => <SpecialtyScreen title={specialty.title} />;
+      return acc;
+    }, {})
   );
 
   // Component for rendering tab bar
@@ -49,18 +49,20 @@ const HomeScreen = () => {
 
   return (
     <View style={styles.container}>
-      <TabView
+     {/* <TabView
         navigationState={{ index, routes: specialties }}
         renderScene={renderScene}
         onIndexChange={setIndex}
         initialLayout={{ width: 300 }}
         renderTabBar={renderTabBar}
-      />
+  />*/}
       <View style={styles.doctorsContainer}>
         <Text style={styles.doctorsHeader}>Doctors Available</Text>
-        {doctors.map(doctor => (
-          <DoctorCard key={doctor.id} doctor={doctor} />
-        ))}
+       {/* {doctors.map(doctor => (
+          <DoctorCard key={doctor.doctor_id} doctor={doctor} />
+       ))}*/}
+       <DoctorCard />
+
       </View>
     </View>
   );
