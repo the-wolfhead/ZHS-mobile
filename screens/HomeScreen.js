@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import DoctorCard from './DoctorCard'; // Import DoctorCard component
+import LabCard from './LabCard'; // import LabCard component
 
 // Dummy data for specialties and doctors
 const specialties = [
@@ -62,6 +63,7 @@ const HomeScreen = () => {
           <DoctorCard key={doctor.doctor_id} doctor={doctor} />
        ))}*/}
        <DoctorCard />
+       <LabCard />
 
       </View>
     </View>

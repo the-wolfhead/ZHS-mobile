@@ -3,6 +3,7 @@ import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import HomeScreen from './HomeScreen';
+import AppointmentsPage from './AppointmentsPage';
 
 /*const HomeScreen = () => (
   <View style={styles.container}>
@@ -10,11 +11,11 @@ import HomeScreen from './HomeScreen';
   </View>
 );*/
 
-const AppointmentsScreen = () => (
+/*const AppointmentsScreen = () => (
   <View style={styles.container}>
     <Text>Appointments Screen</Text>
   </View>
-);
+);*/
 
 const FindDoctorScreen = () => (
   <View style={styles.container}>
@@ -45,7 +46,7 @@ const BottomNavBar = () => {
       }}
     >
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Appointments" component={AppointmentsScreen} />
+      <Tab.Screen name="Appointments" component={ApointmentsPage} />
       <Tab.Screen name="FindDoctor" component={FindDoctorScreen} options={{ tabBarButton: () => <FindDoctorButton /> }} />
       <Tab.Screen name="Wallet" component={WalletScreen} />
       <Tab.Screen name="More" component={MoreScreen} />
