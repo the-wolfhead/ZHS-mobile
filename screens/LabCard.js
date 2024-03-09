@@ -26,7 +26,8 @@ const LabCard = () => {
         <View key={index} style={styles.card}>
           <Image source={{ uri: lab.image }} style={styles.image} />
           <View style={styles.info}>
-            <Text style={styles.name}>{lab.name}</Text>
+            <Text style={styles.name}>{lab.lab_name}</Text>
+            <Text style={styles.location}>{lab.tests_offered}</Text>
             <Text style={styles.location}>{lab.location}</Text>
             <Text style={styles.rating}>Rating: {lab.rating}</Text>
           </View>
