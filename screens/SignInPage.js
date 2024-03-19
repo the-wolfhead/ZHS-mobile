@@ -1,39 +1,43 @@
-import React from 'react';
-import { View, Button } from 'react-native';
-import * as GoogleSignIn from 'expo-google-sign-in'; // Example import for Google sign-in
-import * as AppleAuthentication from 'expo-apple-authentication'; // Example import for Apple sign-in
-import { storeToken } from './SecureStore'; // Assuming SecureStore functions are in a separate file
+import React, { useState } from 'react';
+import { View, Button, Alert } from 'react-native';
+import { auth } from '../firebase'; // Import the auth module from your firebase.js file
+import { useNavigation } from '@react-navigation/native';
 
 const SignInPage = () => {
-  const handleGoogleSignIn = async () => {
+  const navigation = useNavigation(); // Initialize navigation
+
+  const signInWithGoogle = async () => {
     try {
-      await GoogleSignIn.askForPlayServicesAsync();
-      const { type, idToken } = await GoogleSignIn.signInAsync();
-      if (type === 'success') {
-        // Store the Google identity token
-        await storeToken('googleIdToken', idToken);
-        // Navigate to the next screen or perform any other actions
-      }
+      // Implement Google sign-in
+      const { idToken } = await auth().signInWithGoogle();
+      console.log('Google ID token:', idToken);
+      // Handle successful sign-in, navigate to Home screen
+      navigation.navigate('Home');
     } catch (error) {
-      console.error('Google sign-in error:', error);
+      console.error('Error signing in with Google:', error);
+      // Handle sign-in error
+      Alert.alert('Sign In Error', 'Failed to sign in with Google. Please try again later.');
     }
   };
 
-  const handleAppleSignIn = async () => {
+  const signInWithApple = async () => {
     try {
-      const { identityToken } = await AppleAuthentication.signInAsync();
-      // Store the Apple identity token
-      await storeToken('appleIdentityToken', identityToken);
-      // Navigate to the next screen or perform any other actions
+      // Implement Apple sign-in
+      const { idToken } = await auth().signInWithApple();
+      console.log('Apple ID token:', idToken);
+      // Handle successful sign-in, navigate to Home screen
+      navigation.navigate('Home');
     } catch (error) {
-      console.error('Apple sign-in error:', error);
+      console.error('Error signing in with Apple:', error);
+      // Handle sign-in error
+      Alert.alert('Sign In Error', 'Failed to sign in with Apple. Please try again later.');
     }
   };
 
   return (
     <View>
-      <Button title="Sign in with Google" onPress={handleGoogleSignIn} />
-      <Button title="Sign in with Apple" onPress={handleAppleSignIn} />
+      <Button title="Sign in with Google" onPress={signInWithGoogle} />
+      <Button title="Sign in with Apple" onPress={signInWithApple} />
     </View>
   );
 };
