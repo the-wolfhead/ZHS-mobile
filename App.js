@@ -12,6 +12,8 @@ const App = () => {
       <Tab.Navigator>
         <Tab.Screen name="SignIn" component={SignInPage} /> {/* Add the SignInPage as a screen */}
         <Tab.Screen name="Home" component={BottomNavBar} />
+        <Tab.Screen name="DoctorDetails" component={DoctorDetailsScreen} />
+
       </Tab.Navigator>
     </NavigationContainer>
   );
